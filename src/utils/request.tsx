@@ -54,12 +54,13 @@ const errorHandler = async (error) => {
 //继承umi的request方法，并设置配置
 const request = extend({
   errorHandler,
-  credentials: 'include'    请求是否带上cookie
+  // 请求是否带上cookie
+  credentials: 'include',
   // prefix ：'/api' API请求的url前默认添加头部
 });
 
 
-//添加请求拦截器，在发出请求前会先进入到这里
+//添加请求拦截器，在发出请求前会先进入到这里!
 request.interceptors.request.use((url, options) => {
 
   const token = 'hello'
