@@ -1,12 +1,12 @@
 // @ts-ignore
 /* eslint-disable */
-import request  from '../../utils/request';
+import request from '../../utils/request';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
   return request<{
     data: API.CurrentUser;
-  }>('/api/currentUser', {
+  }>('/api/admin/user', {
     method: 'GET',
     ...(options || {}),
   });
@@ -14,28 +14,45 @@ export async function currentUser(options?: { [key: string]: any }) {
 
 /** 退出登录接口 POST /api/login/outLogin */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/login/outLogin', {
+  return request<Record<string, any>>('/api/auth/logout', {
     method: 'POST',
     ...(options || {}),
   });
 }
 
 /** 登录接口 POST /api/login/account */
-export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  // return request<API.LoginResult>('/api/login/account', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   data: body,
-  //   ...(options || {}),
-  // });
+export async function login(data: Object) {
   return request<{
     data: API.CurrentUser;
   }>('/api/auth/login', {
     method: 'POST',
-    ...(options || {}),
-  });
+    data
+  })
+}
+
+// 获取首页统计信息
+export async function getInfo() {
+  return request('/api/admin/index')
+}
+
+//获取用户列表
+export async function getUserTable(params:Object) {
+  return request('/api/admin/users',{params})
+}
+
+//启用禁用用户
+export async function disUser(user:Object) {
+  // @ts-ignore
+  return request.patch(`/api/admin/users/${user.id}/lock`)
+}
+
+// 新建用户
+export async function createUser(params:Object) {
+  return request.post('/api/admin/users',{params})
+}
+// 新建用户
+export async function upDataUser(userId:number,params:Object) {
+  return request.put(`/api/admin/users/${userId}`,{params})
 }
 
 /** 此处后端没有提供注释 GET /api/notices */

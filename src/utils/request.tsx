@@ -24,6 +24,7 @@ const codeMessage = {
 }
 
 //异常报错处理
+//@ts-ignore
 const errorHandler = async (error) => {
 
   const { response } = error
@@ -32,6 +33,7 @@ const errorHandler = async (error) => {
     const res = await response.json()
     const { status } = response
     let errText = codeMessage[status] || response.statusText
+    
     if (status == 422) {
       let errs = ''
       for (const key in res.errors) {
@@ -63,7 +65,7 @@ const request = extend({
 //添加请求拦截器，在发出请求前会先进入到这里!
 request.interceptors.request.use((url, options) => {
 
-  const token = 'hello'
+  const token = localStorage.getItem('access_token')  || 'nologin'
 
   const headers = {
     Authorization: `Bearer ${token} `

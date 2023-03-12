@@ -25,6 +25,22 @@
     ],
   },
   {
+    path:'/',
+    redirect:'/dashboard'
+  },
+  {
+    path:'/dashboard',
+    name:'desboard',
+    icon:'PieChartOutlined',
+    component:'@/pages/Dashboard/index'
+  },
+  {
+    path:'/usertable',
+    name:'usertable',
+    icon:'UserOutlined',
+    component:'./user/UserTable'
+  },
+  {
     component: './404',
   },
 ];
