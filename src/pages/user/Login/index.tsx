@@ -16,7 +16,7 @@ import {  message, Tabs } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
 import styles from './index.less';
-import logo from '@/assets/visit.png'
+import logo from '../../../../public/visit.png'
 
 
 
