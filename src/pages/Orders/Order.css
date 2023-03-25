@@ -1,0 +1,11 @@
+.cutdata{
+  margin-top: 20px;
+}
+
+
+.cutdata > span{
+  color: #756e6e;
+  margin-right: 40px;
+  position: relative;
+  right: 30px;
+}

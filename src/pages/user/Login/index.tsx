@@ -1,21 +1,18 @@
 import Footer from '@/components/Footer';
-import { currentUser, login } from '@/services/ant-design-pro/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { login } from '@/services/ant-design-pro/api';
 import {
   AlipayCircleOutlined,
   LockOutlined,
-  MobileOutlined,
   TaobaoCircleOutlined,
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
 import {
   LoginForm,
-  ProFormCaptcha,
   ProFormCheckbox,
   ProFormText,
 } from '@ant-design/pro-components';
-import { Alert, message, Tabs } from 'antd';
+import {  message, Tabs } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
 import styles from './index.less';
@@ -29,6 +26,7 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
+  //@ts-ignore
   useEffect(async () => {
     history.replace('/')
   }, [initialState])
@@ -37,8 +35,11 @@ const Login: React.FC = () => {
     try {
       const msg: Object = await login({ ...values });
 
+      //@ts-ignore
       if (!msg.status) {
+        //@ts-ignore
         localStorage.setItem('access_token', msg.access_token)
+        //@ts-ignore
         let currentUser = await initialState?.fetchUserInfo()
         setInitialState((state) => ({ ...state, currentUser }))
         message.success('登录成功')
@@ -54,7 +55,6 @@ const Login: React.FC = () => {
       message.error(defaultLoginFailureMessage);
     }
   };
-  const { status } = userLoginState;
 
   return (
     <div className={styles.container}>
@@ -64,7 +64,7 @@ const Login: React.FC = () => {
       <div className={styles.content}>
         <LoginForm
           logo={logo}
-          title="融职商城"
+          title="电商商城"
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,

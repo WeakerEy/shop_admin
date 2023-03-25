@@ -1,10 +1,18 @@
+/*
+ * @Author: WeakerEy 280676418@qq.com
+ * @Date: 2023-03-12 17:46:13
+ * @LastEditors: WeakerEy 280676418@qq.com
+ * @LastEditTime: 2023-03-13 15:57:43
+ * @FilePath: \mayapp\src\pages\user\UserTable\components\Edit\Edit.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { upDataUser } from '@/services/ant-design-pro/api'
 import { ProForm, ProFormText } from '@ant-design/pro-components'
 import { message, Modal } from 'antd'
 
-export default function Create(props:any) {
+export default function Edit(props: any) {
 
-  let { isModalOpenEdit, setIsModalOpenEdit, actionRef ,currentUserInfo} = props
+  let { isModalOpenEdit, setIsModalOpenEdit, actionRef, currentUserInfo } = props
 
   // 关闭新建对话框
   function handleCancel() {
@@ -12,8 +20,8 @@ export default function Create(props:any) {
   }
 
   // 提交表单
-  function subForm(userId:number,values:any) {
-    let res = upDataUser(userId,values)
+  function subForm(userId: number, values: any) {
+    let res = upDataUser(userId, values)
     // @ts-ignore
     if (!res.status) {
       setIsModalOpenEdit(false)
@@ -21,14 +29,14 @@ export default function Create(props:any) {
       actionRef.current.reload();
     }
   }
-  console.log(currentUserInfo)
 
   return (
     <Modal title="创建新用户" open={isModalOpenEdit} onCancel={handleCancel} footer={null} destroyOnClose={true}>
       <ProForm
-      // @ts-ignore
-        onFinish={(values) => subForm(currentUserInfo.id,values)}
-        initialValues = {currentUserInfo}
+        // @ts-ignore
+        onFinish={(values) => subForm(currentUserInfo.id, values)}
+        initialValues={currentUserInfo}
+        grid={true}
       >
         <ProFormText
           width="md"

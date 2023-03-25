@@ -1,5 +1,6 @@
 import { extend } from "umi-request";
 import { message } from 'antd'
+import {history} from 'umi'
 
 //状态码文本
 const codeMessage = {
@@ -33,7 +34,7 @@ const errorHandler = async (error) => {
     const res = await response.json()
     const { status } = response
     let errText = codeMessage[status] || response.statusText
-    
+
     if (status == 422) {
       let errs = ''
       for (const key in res.errors) {
@@ -45,6 +46,12 @@ const errorHandler = async (error) => {
     if (status == 400) {
       errText += `[ ${res.message} ]`
     }
+
+    if (status == 401) {
+      localStorage.removeItem('access_token')
+      history.push('/')
+    }
+
     message.error(errText)
   } else if (!response) {
     message.error('您的网络异常，无法链接服务器')
@@ -65,7 +72,7 @@ const request = extend({
 //添加请求拦截器，在发出请求前会先进入到这里!
 request.interceptors.request.use((url, options) => {
 
-  const token = localStorage.getItem('access_token')  || 'nologin'
+  const token = localStorage.getItem('access_token') || 'nologin'
 
   const headers = {
     Authorization: `Bearer ${token} `

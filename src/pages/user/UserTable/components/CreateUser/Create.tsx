@@ -29,7 +29,9 @@ export default function Create(props:any) {
     <Modal title="创建新用户" open={isModalOpen} onCancel={handleCancel} footer={null} destroyOnClose={true}>
       <ProForm
       // @ts-ignore
-        onFinish={(values) => subForm(values)}>
+        onFinish={(values) => subForm(values)}
+        grid={true}
+        >
         <ProFormText
           width="md"
           name="name"

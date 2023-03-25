@@ -12,7 +12,7 @@ const Settings: LayoutSettings & {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: '融职商城',
+  title: '电商商城',
   pwa: false,
   logo: 'http://192.168.31.55:8000/visit.png',
   iconfontUrl: '',

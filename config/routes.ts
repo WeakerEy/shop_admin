@@ -41,6 +41,24 @@
     component:'./user/UserTable'
   },
   {
+    path:'/goods',
+    name:'goods',
+    icon:'ShoppingOutlined',
+    component:'@/pages/Goods'
+  },
+  {
+    path:'/category',
+    name:'category',
+    icon:'DatabaseOutlined',
+    component:'@/pages/Category'
+  },
+  {
+    path:'/orders',
+    name:'orders',
+    icon:'DatabaseOutlined',
+    component:'@/pages/Orders/Orders'
+  },
+  {
     component: './404',
   },
 ];
