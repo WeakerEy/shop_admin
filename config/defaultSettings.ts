@@ -2,7 +2,6 @@ import { Settings as LayoutSettings } from '@ant-design/pro-components';
 
 const Settings: LayoutSettings & {
   pwa?: boolean;
-  logo?: string;
 } = {
   navTheme: 'light',
   // 拂晓蓝
@@ -14,7 +13,6 @@ const Settings: LayoutSettings & {
   colorWeak: false,
   title: '电商商城',
   pwa: false,
-  logo: 'http://192.168.31.55:8000/visit.png',
   iconfontUrl: '',
 };
 

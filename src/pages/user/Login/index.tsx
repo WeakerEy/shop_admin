@@ -63,6 +63,7 @@ const Login: React.FC = () => {
       </div>
       <div className={styles.content}>
         <LoginForm
+          logo={logo}
           title="电商商城"
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
